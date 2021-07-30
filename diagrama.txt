@@ -1,0 +1,9 @@
+- Artists (id_artist#, first_name, last_name, name, sex, phone, mail)
+- Albums (id_album#, name, no_songs)
+- Songs (id_song#, name, id_artist(FK), id_album(FK), publish_date)
+- Collaborations (id_song#, id_artist#)
+- Locations (id_location#, country, city, street, name)
+- Concerts (id_concert#, id_location(FK), concert_date)
+- Contracts (id_artist#, id_concert#, salary)
+
+
