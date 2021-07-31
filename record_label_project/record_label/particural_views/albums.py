@@ -27,7 +27,7 @@ def update_album(request, id):
     form = AlbumForm(request.POST or None, instance=obj)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("albums/"+id)
+        return HttpResponseRedirect("/albums")
     context = {"form": form}
     return render(request, "album/update_album.html", context)
 

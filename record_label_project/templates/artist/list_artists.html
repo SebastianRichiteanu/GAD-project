@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="main">
-        {% if albums %}
+        {% if artists %}
             <ul>
-                {% for album in albums %}
-                    <li>{{album.title}} - {{album.no_songs}}</li>
+                {% for artist in artists %}
+                    <li>{{artist.name}} - {{artist.first_name}} {{artist.last_name}}</li>
                 {% endfor %}
             </ul>
         {% endif %}

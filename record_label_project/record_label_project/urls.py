@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from record_label.views import homepage
 from record_label.particural_views.albums import create_album, list_albums, view_album, update_album, delete_album
+from record_label.particural_views.artists import create_artist, list_artists, view_artist, update_artist, delete_artist
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,12 @@ urlpatterns = [
     path('albums/create', create_album),
     path('albums/<id>', view_album),
     path('albums/<id>/update', update_album),
-    path('albums/<id>/delete', delete_album)
+    path('albums/<id>/delete', delete_album),
+
+    path('artists', list_artists),
+    path('artists/create', create_artist),
+    path('artists/<id>', view_artist),
+    path('artists/<id>/update', update_artist),
+    path('artists/<id>/delete', delete_artist)
+
 ]

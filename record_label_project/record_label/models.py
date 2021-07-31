@@ -13,10 +13,15 @@ class MyModel(models.Model):
 class Artist(MyModel):
     class Meta:
         db_table: 'record_label_artist'
+    gender_options = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('N', 'Prefer not to say')
+    )
     first_name = models.CharField(max_length=255, unique=False)
     last_name = models.CharField(max_length=255, unique=False)
     name = models.CharField(max_length=255, unique=True)
-    sex = models.CharField(max_length=10, unique=False)
+    gender = models.CharField(max_length=10, choices=gender_options, unique=False)
     phone = models.CharField(max_length=15, unique=True)
     mail = models.CharField(max_length=255, unique=True)
 
@@ -24,7 +29,7 @@ class Artist(MyModel):
 class Album(MyModel):
     class Meta:
         db_table: 'record_label_album'
-    name = models.CharField(max_length=255, unique=False)
+    title = models.CharField(max_length=255, unique=False)
     no_songs = models.IntegerField()
 
 
