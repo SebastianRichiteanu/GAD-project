@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if concerts %}
+            <ul>
+                {% for concert in concerts %}
+                    <li>{{concert.id_location}} - {{concert.concert_date}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

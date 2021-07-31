@@ -36,10 +36,10 @@ class Album(MyModel):
 class Song(MyModel):
     class Meta:
         db_table: 'record_label_song'
-    name = models.CharField(max_length=255, unique=False)
+    title = models.CharField(max_length=255, unique=False)
     id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    id_album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True)
-    publish_date = models.DateTimeField()
+    id_album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True, blank = True)
+    publish_date = models.DateField()
 
 
 class Collaboration(MyModel):
@@ -65,7 +65,7 @@ class Concert(MyModel):
         db_table: 'record_label_concert'
 
     id_location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    publish_date = models.DateTimeField()
+    concert_date = models.DateTimeField()
 
 
 class Contract(MyModel):
@@ -75,3 +75,4 @@ class Contract(MyModel):
 
     id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     id_concert = models.ForeignKey(Concert, on_delete=models.CASCADE)
+    salary = models.IntegerField()

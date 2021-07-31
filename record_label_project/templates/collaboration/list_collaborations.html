@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if collaborations %}
+            <ul>
+                {% for collaboration in collaborations %}
+                    <li>{{collaboration.id_song}} - {{collaboration.id_artist}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

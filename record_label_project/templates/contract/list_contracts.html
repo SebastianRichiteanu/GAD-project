@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if contracts %}
+            <ul>
+                {% for contract in contracts %}
+                    <li>{{contract.id_artist}} - {{contract.id_concert}} : {{contract.salary}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

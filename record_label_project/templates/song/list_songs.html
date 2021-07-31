@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if songs %}
+            <ul>
+                {% for song in songs %}
+                    <li>{{song.title}} - {{song.publish_date}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

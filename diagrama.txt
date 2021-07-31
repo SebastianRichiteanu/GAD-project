@@ -1,9 +1,9 @@
 x Albums (id_album#, title, no_songs)
-- Artists (id_artist#, first_name, last_name, name, gender, phone, mail)
-- Songs (id_song#, name, id_artist(FK), id_album(FK), publish_date)
-- Collaborations (id_song#, id_artist#)
-- Locations (id_location#, country, city, street, name)
-- Concerts (id_concert#, id_location(FK), concert_date)
-- Contracts (id_artist#, id_concert#, salary)
+x Artists (id_artist#, first_name, last_name, name, gender, phone, mail)
+x Songs (id_song#, name, id_artist(FK), id_album(FK), publish_date)
+x Collaborations (id_song#, id_artist#)
+x Locations (id_location#, country, city, street, name)
+x Concerts (id_concert#, id_location(FK), concert_date)
+x Contracts (id_artist#, id_concert#, salary)
 
 

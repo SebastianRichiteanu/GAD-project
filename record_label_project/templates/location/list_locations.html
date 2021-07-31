@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if locations %}
+            <ul>
+                {% for location in locations %}
+                    <li>{{location.name}} - {{location.country}}, {{location.city}}, {{location.street}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
