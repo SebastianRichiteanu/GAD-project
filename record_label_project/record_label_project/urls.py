@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from record_label.views import homepage
+from record_label.particural_views.albums import create_album, list_albums, view_album, update_album, delete_album
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', homepage),
+
+    path('albums', list_albums),
+    path('albums/create', create_album),
+    path('albums/<id>', view_album),
+    path('albums/<id>/update', update_album),
+    path('albums/<id>/delete', delete_album)
 ]

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main">
+        {% if albums %}
+            <ul>
+                {% for album in albums %}
+                    <li>{{album.name}} - {{album.no_songs}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
