@@ -3,13 +3,13 @@
     <title>Artists</title>
 {% endblock %}
 {% block content %}
-    <div class="main">
+    <div class="div-form">
         <p>
             <a class="btn btn-primary" href="{% url 'create_artist' %}">Add artist</a>
         </p>
-        {% if artists %}
+        {% if page_obj %}
             <ul>
-                {% for artist in artists %}
+                {% for artist in page_obj %}
                     <li>
                         <a href="{% url 'view_artist' artist.id %}"> {{artist.name}} - {{artist.first_name}} {{artist.last_name}} </a>
                     </li>
@@ -18,5 +18,28 @@
         {% else %}
             <p> No artist found.</p>
         {% endif %}
+
+        {% if page_obj.has_other_pages %}
+          <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+              {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
     </div>
 {% endblock %}

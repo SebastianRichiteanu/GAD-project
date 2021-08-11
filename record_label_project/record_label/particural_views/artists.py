@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
+from django.core.paginator import Paginator
 from record_label.models import Artist
 from record_label.forms import ArtistForm
 
@@ -13,12 +14,11 @@ def create_artist(request):
 
 
 def list_artists(request):
-    url_parameter = request.GET.get("q")
-    if url_parameter:
-        artists = Artist.objects.filter(name__icontains=url_parameter)
-    else:
-        artists = Artist.objects.all()
-    context = {"artists": artists}
+    artists = Artist.objects.all()
+    paginator = Paginator(artists, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"page_obj": page_obj}
     return render(request, "artist/list_artists.html", context)
 
 

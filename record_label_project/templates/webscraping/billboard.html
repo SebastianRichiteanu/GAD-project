@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Name</th>
+          <th scope="col">Last Week</th>
+          <th scope="col">Peak</th>
+          <th scope="col">Weeks in TOP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in top20 %}
+            <tr>
+                <th scope="row">{{ obj.0 }}</th>
+                <td>{{ obj.1 }}</td>
+                <td>{{ obj.2 }}</td>
+                <td>{{ obj.3 }}</td>
+                <td>{{ obj.4 }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

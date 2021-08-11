@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from record_label.views import homepage
+from record_label.views import homepage, billboard_top20
 from record_label.particural_views.albums import create_album, list_albums, view_album, update_album, delete_album
 from record_label.particural_views.artists import create_artist, list_artists, view_artist, update_artist, delete_artist
 from record_label.particural_views.songs import create_song, list_songs, view_song, update_song, delete_song
@@ -27,6 +27,7 @@ from record_label.particural_views.concerts import create_concert, list_concerts
     delete_concert
 from record_label.particural_views.contracts import create_contract, list_contracts, view_contract, update_contract, \
     delete_contract
+
 
 
 urlpatterns = [
@@ -75,4 +76,5 @@ urlpatterns = [
     path('contracts/<id>/update', update_contract, name="update_contract"),
     path('contracts/<id>/delete', delete_contract, name="delete_contract"),
 
+    path('billboard', billboard_top20, name="billboard")
 ]
