@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_artist' %}">Add artist</a>
+        </p>
         {% if artists %}
             <ul>
                 {% for artist in artists %}
-                    <li>{{artist.name}} - {{artist.first_name}} {{artist.last_name}}</li>
+                    <li>
+                        <a href="{% url 'view_artist' artist.id %}"> {{artist.name}} - {{artist.first_name}} {{artist.last_name}} </a>
+                    </li>
                 {% endfor %}
             </ul>
         {% endif %}

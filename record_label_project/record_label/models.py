@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class MyModel(models.Model):
     class Meta:
@@ -12,7 +10,7 @@ class MyModel(models.Model):
 
 class Artist(MyModel):
     class Meta:
-        db_table: 'record_label_artist'
+        db_table: 'artists'
     gender_options = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -25,54 +23,75 @@ class Artist(MyModel):
     phone = models.CharField(max_length=15, unique=True)
     mail = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Album(MyModel):
     class Meta:
-        db_table: 'record_label_album'
+        db_table: 'albums'
     title = models.CharField(max_length=255, unique=False)
-    no_songs = models.IntegerField()
+    no_songs = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.title
 
 
 class Song(MyModel):
     class Meta:
-        db_table: 'record_label_song'
+        db_table: 'songs'
     title = models.CharField(max_length=255, unique=False)
     id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     id_album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True, blank = True)
     publish_date = models.DateField()
 
+    def __str__(self):
+        return self.title
+
 
 class Collaboration(MyModel):
     class Meta:
-        db_table: 'record_label_collaboration'
+        db_table: 'collaborations'
         unique_together = (("id_song", "id_artist"),)
     id_song = models.ForeignKey(Song, on_delete=models.CASCADE)
     id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{str(self.id_song)} {str(self.id_artist)}"
+
 
 class Location(MyModel):
     class Meta:
-        db_table: 'record_label_location'
+        db_table: 'locations'
 
     country = models.CharField(max_length=255, unique=False)
     city = models.CharField(max_length=255, unique=False)
     street = models.CharField(max_length=255, unique=False)
     name = models.CharField(max_length=255, unique=False)
 
+    def __str__(self):
+        return f"{self.name}: {self.country}, {self.city}"
+
 
 class Concert(MyModel):
     class Meta:
-        db_table: 'record_label_concert'
+        db_table: 'concerts'
 
     id_location = models.ForeignKey(Location, on_delete=models.CASCADE)
     concert_date = models.DateTimeField()
 
+    def __str__(self):
+        return f"{self.id_location} {self.concert_date}"
+
 
 class Contract(MyModel):
     class Meta:
-        db_table: 'record_label_contract'
+        db_table: 'contracts'
         unique_together = (("id_artist", "id_concert"),)
 
     id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     id_concert = models.ForeignKey(Concert, on_delete=models.CASCADE)
     salary = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.id_artist} {self.id_concert} {self.salary}"
