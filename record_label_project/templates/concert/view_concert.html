@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> {{ concert.location }} - {{ concert.concert_date }}</title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ concert.id_location }}<br/>
-        {{ concert.concert_date }}<br/>
+    <div class="div-form">
+        <h3> Location - <a href="{% url 'view_location' concert.location.id %}"> {{ concert.location }} </a> </h3>
+        <h3> Date - {{ concert.concert_date }}</h3>
+
+        <a class="btn btn-warning" href="{% url 'update_concert' concert.id %}">Update concert</a>
+        <a class="btn btn-danger" href="{% url 'delete_concert' concert.id %}">Delete concert</a>
     </div>
+
 {% endblock %}

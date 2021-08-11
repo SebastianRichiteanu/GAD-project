@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> Collaboration </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ collaboration.id_song }}<br/>
-        {{ collaboration.id_artist }}<br/>
+    <div class="div-form">
+        <p> Song - <a href="{% url 'view_song' collaboration.song.id %}" > {{ collaboration.song }} </a> </p>
+        <p> Artist - <a href="{% url 'view_artist' collaboration.artist.id %}" > {{ collaboration.artist }}</p>
+
+        <a class="btn btn-warning" href="{% url 'update_collaboration' collaboration.id %}">Update collaboration</a>
+        <a class="btn btn-danger" href="{% url 'delete_collaboration' collaboration.id %}">Delete collaboration</a>
     </div>
+
+    <a class="btn btn-warning" href="{% url 'update_collaboration' collaboration.id %}">Update collaboration</a>
+    <a class="btn btn-danger" href="{% url 'delete_collaboration' collaboration.id %}">Delete collaboration</a>
 {% endblock %}

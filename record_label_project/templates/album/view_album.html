@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> {{album.title}} </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ album.title }}<br/>
-        {{ album.no_songs }}<br/>
+    <div class="div-form">
+        <h1>{{ album.title }}</h1>
+        <p> No Songs - {{ album.no_songs }}</p>
+        <p> Publish date - {{ album.publish_date }}</p>
+
+        <a class="btn btn-warning" href="{% url 'update_album' album.id %}">Update album</a>
+        <a class="btn btn-danger" href="{% url 'delete_album' album.id %}">Delete album</a>
     </div>
 {% endblock %}

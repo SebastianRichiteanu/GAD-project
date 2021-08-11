@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> {{artist.name}} </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ artist.name }}<br/>
-        {{ artist.first_name }}<br/>
-        {{ artist.last_name }}<br/>
-        {{ artist.gender }}<br/>
-        {{ artist.phone }}<br/>
-        {{ artist.mail }}<br/>
+    <div class="div-form">
+        <h1>{{ artist.name }}</h1>
+        <h2>{{ artist.first_name }} {{ artist.last_name }}</h2>
+        <p> Gender - {{ artist.gender }}</p>
+        <p> Phone - {{ artist.phone }}</p>
+        <p> Mail - {{ artist.mail }}</p>
+
+        <a class="btn btn-warning" href="{% url 'update_artist' artist.id %}">Update artist</a>
+        <a class="btn btn-danger" href="{% url 'delete_artist' artist.id %}">Delete artist</a>
     </div>
 
-    <a class="btn btn-warning" href="{% url 'update_artist' artist.id %}">Update artist</a>
-    <a class="btn btn-danger" href="{% url 'delete_artist' artist.id %}">Delete artist</a>
 {% endblock %}

@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> {{location.name}} </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ location.name }}<br/>
-        {{ location.country }}<br/>
-        {{ location.city }}<br/>
-        {{ location.street }}<br/>
+    <div class="div-form">
+        <h3> {{ location.name }} </h3>
+        <p> Country - {{ location.country }}</p>
+        <p> City - {{ location.city }}</p>
+        <p> Street - {{ location.street }}</p>
+
+        <a class="btn btn-warning" href="{% url 'update_location' location.id %}">Update location</a>
+        <a class="btn btn-danger" href="{% url 'delete_location' location.id %}">Delete location</a>
     </div>
+
+
 {% endblock %}

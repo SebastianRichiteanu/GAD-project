@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Concerts</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_concert' %}">Add concert</a>
+        </p>
         {% if concerts %}
             <ul>
                 {% for concert in concerts %}
-                    <li>{{concert.id_location}} - {{concert.concert_date}}</li>
+                    <li>
+                        <a href="{% url 'view_concert' concert.id %}"> {{concert.location}} - {{concert.concert_date}}</a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No concert found.</p>
         {% endif %}
     </div>
 {% endblock %}

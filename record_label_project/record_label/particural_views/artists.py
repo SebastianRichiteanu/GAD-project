@@ -13,7 +13,12 @@ def create_artist(request):
 
 
 def list_artists(request):
-    context = {"artists": Artist.objects.all()}
+    url_parameter = request.GET.get("q")
+    if url_parameter:
+        artists = Artist.objects.filter(name__icontains=url_parameter)
+    else:
+        artists = Artist.objects.all()
+    context = {"artists": artists}
     return render(request, "artist/list_artists.html", context)
 
 

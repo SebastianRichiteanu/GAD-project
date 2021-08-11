@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> {{song.title}} </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ song.title }}<br/>
-        {{ song.id_artist }}<br/>
-        {{ song.id_album }}<br/>
-        {{ song.publish_date }}<br/>
+    <div class="div-form">
+        <h1>{{ song.title }}</h1>
+        <h2> Artist - <a href="{% url 'view_artist' song.artist.id %}"> {{ song.artist }} </a> </h2>
+        <p> Publish Date - {{ song.publish_date }}</p>
+        <p> Album -
+            {% if song.album %}
+                {{ song.album }}
+            {% else %}
+                N/A
+            {% endif %}
+        </p>
+
+        <a class="btn btn-warning" href="{% url 'update_song' song.id %}">Update song</a>
+        <a class="btn btn-danger" href="{% url 'delete_song' song.id %}">Delete song</a>
     </div>
+
+
 {% endblock %}

@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Locations</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_location' %}">Add location</a>
+        </p>
         {% if locations %}
             <ul>
                 {% for location in locations %}
-                    <li>{{location.name}} - {{location.country}}, {{location.city}}, {{location.street}}</li>
+                    <li>
+                        <a href="{% url 'view_location' location.id %}"> {{location}} </a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No location found.</p>
         {% endif %}
     </div>
 {% endblock %}

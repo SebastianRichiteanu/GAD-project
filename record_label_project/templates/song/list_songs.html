@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Songs</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_song' %}">Add song</a>
+        </p>
         {% if songs %}
             <ul>
                 {% for song in songs %}
-                    <li>{{song.title}} - {{song.publish_date}}</li>
+                    <li>
+                        <a href="{% url 'view_song' song.id %}"> {{song.title}} - {{song.artist}} </a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No song found.</p>
         {% endif %}
     </div>
 {% endblock %}

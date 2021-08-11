@@ -1,3 +1,5 @@
+from time import timezone
+
 from django.db import models
 
 
@@ -32,32 +34,41 @@ class Album(MyModel):
         db_table: 'albums'
     title = models.CharField(max_length=255, unique=False)
     no_songs = models.PositiveIntegerField()
+    publish_date = models.DateField(null=True)
 
     def __str__(self):
         return self.title
+
+    @property
+    def is_released(self):
+        return self.publish_date < timezone.now().date()
 
 
 class Song(MyModel):
     class Meta:
         db_table: 'songs'
     title = models.CharField(max_length=255, unique=False)
-    id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    id_album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True, blank = True)
-    publish_date = models.DateField()
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True, blank=True)
+    publish_date = models.DateField(null=True)
 
     def __str__(self):
         return self.title
+
+    @property
+    def is_released(self):
+        return self.publish_date < timezone.now().date()
 
 
 class Collaboration(MyModel):
     class Meta:
         db_table: 'collaborations'
-        unique_together = (("id_song", "id_artist"),)
-    id_song = models.ForeignKey(Song, on_delete=models.CASCADE)
-    id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+        unique_together = (("song", "artist"),)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{str(self.id_song)} {str(self.id_artist)}"
+        return f"{str(self.song)} {str(self.artist)}"
 
 
 class Location(MyModel):
@@ -77,21 +88,21 @@ class Concert(MyModel):
     class Meta:
         db_table: 'concerts'
 
-    id_location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     concert_date = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.id_location} {self.concert_date}"
+        return f"{self.location} {self.concert_date}"
 
 
 class Contract(MyModel):
     class Meta:
         db_table: 'contracts'
-        unique_together = (("id_artist", "id_concert"),)
+        unique_together = (("artist", "concert"),)
 
-    id_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    id_concert = models.ForeignKey(Concert, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    concert = models.ForeignKey(Concert, on_delete=models.CASCADE)
     salary = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id_artist} {self.id_concert} {self.salary}"
+        return f"{self.artist} {self.concert} {self.salary}"

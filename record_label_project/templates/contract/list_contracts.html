@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Contracts</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_contract' %}">Add contract</a>
+        </p>
         {% if contracts %}
             <ul>
                 {% for contract in contracts %}
-                    <li>{{contract.id_artist}} - {{contract.id_concert}} : {{contract.salary}}</li>
+                    <li>
+                        <a href="{% url 'view_contract' contract.id %}"> {{contract.concert.concert_date}} - {{contract.artist}}  </a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No contract found.</p>
         {% endif %}
     </div>
 {% endblock %}

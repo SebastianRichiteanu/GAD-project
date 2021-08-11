@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Albums</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_album' %}">Add album</a>
+        </p>
         {% if albums %}
             <ul>
                 {% for album in albums %}
-                    <li>{{album.title}} - {{album.no_songs}}</li>
+                    <li>
+                        <a href="{% url 'view_album' album.id %}"> {{album.title}} </a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No album found.</p>
         {% endif %}
-
     </div>
 {% endblock %}

@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+    <title>Collaborations</title>
+{% endblock %}
 {% block content %}
     <div class="main">
+        <p>
+            <a class="btn btn-primary" href="{% url 'create_collaboration' %}">Add artist</a>
+        </p>
         {% if collaborations %}
             <ul>
                 {% for collaboration in collaborations %}
-                    <li>{{collaboration.id_song}} - {{collaboration.id_artist}}</li>
+                    <li>
+                        <a href="{% url 'view_collaboration' collaboration.id %}"> {{collaboration.song.title}} - {{collaboration.artist.name}} </a>
+                    </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p> No collaboration found.</p>
         {% endif %}
     </div>
 {% endblock %}

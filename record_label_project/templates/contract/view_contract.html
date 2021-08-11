@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    <title> Contract </title>
+{% endblock %}
+
 {% block content %}
-    <div class="main">
-        {{ contract.id_artist }}<br/>
-        {{ contract.id_concert }}<br/>
-        {{ contract.salary }}<br/>
+    <div class="div-form">
+        <p> Artist - <a href="{% url 'view_artist' contract.artist.id %}" > {{ contract.artist }} </a> </p>
+        <p> Concert - <a href="{% url 'view_concert' contract.concert.id %}" > {{ contract.concert }} </a> </p>
+        <p> Salary - {{ contract.salary }}</p>
+
+        <a class="btn btn-warning" href="{% url 'update_contract' contract.id %}">Update contract</a>
+        <a class="btn btn-danger" href="{% url 'delete_contract' contract.id %}">Delete contract</a>
     </div>
+
 {% endblock %}
