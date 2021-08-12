@@ -43,6 +43,11 @@ class Album(MyModel):
     def is_released(self):
         return self.publish_date < timezone.now().date()
 
+    # For admin page
+    def get_no_songs(self):
+        return self.no_songs
+    get_no_songs.short_description = "Number of songs"
+
 
 class Song(MyModel):
     class Meta:
@@ -83,6 +88,10 @@ class Location(MyModel):
     def __str__(self):
         return f"{self.name}: {self.country}, {self.city}"
 
+    def get_address(self):
+        return f"{self.country}, {self.city}, {self.street}"
+    get_address.short_description = "Address"
+
 
 class Concert(MyModel):
     class Meta:
@@ -92,7 +101,7 @@ class Concert(MyModel):
     concert_date = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.location} {self.concert_date}"
+        return f"{self.location} ; {self.concert_date}"
 
 
 class Contract(MyModel):
