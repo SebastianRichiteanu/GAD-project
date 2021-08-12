@@ -1,5 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h3> Project developed in {{framework_name}} </h3>
-    <p> This is my first template </p>
+    <h1 class="container h1-title">
+        Record Label Project
+    </h1>
+    {% if news %}
+        <div class="container">
+            {% for obj in news %}
+            <div class="card mb-4 shadow">
+                <div class="card-body news-div">
+                    <img src="{{obj.2}}" style="width:200px">
+                    <div>
+                        <h4 class="card-title">{{obj.0}}</></h4>
+                        <p class="card-text">{{obj.1}} </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p> No news found.</p>
+    {% endif %}
 {% endblock %}

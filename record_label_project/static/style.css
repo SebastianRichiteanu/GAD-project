@@ -1,3 +1,20 @@
 .div-form {
     padding: 20px;
 }
+
+.btn-add-artist {
+    position:absolute;
+    right:45%;
+}
+
+.news-div {
+    display:flex;
+}
+
+.news-div div {
+    padding: 10px;
+}
+
+.h1-title {
+    padding:25px;
+}

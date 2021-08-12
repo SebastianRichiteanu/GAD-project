@@ -14,9 +14,13 @@ def create_artist(request):
 
 
 def list_artists(request):
-    artists = Artist.objects.all()
-    paginator = Paginator(artists, 1)
-    page_number = request.GET.get('page')
+    if 'q' in request.GET:
+        q=request.GET.get('q')
+        artists = Artist.objects.filter(name__icontains=q)
+    else:
+        artists = Artist.objects.all()
+    paginator = Paginator(artists, 3)
+    page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
     context = {"page_obj": page_obj}
     return render(request, "artist/list_artists.html", context)

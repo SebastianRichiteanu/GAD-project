@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 def billboard_webscraping():
     url = 'https://www.billboard.com/charts/artist-100'
-    columns = ['Rank', 'Name', 'Last', 'Peak', 'Weeks']
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -30,3 +29,19 @@ def billboard_webscraping():
 
     return full_list
 
+
+def news_webscraping():
+    url = 'https://www.nme.com/news/music'
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    table = soup.find('div', {'id': 'tdi_85'})
+    table_rows = table.find_all('div', {'class': 'tdb_module_loop td_module_wrap td-animation-stack'})
+    full_list = []
+
+    for table_row in table_rows:
+        title = table_row.find('a', {'class': 'td-image-wrap'}).get('title', 'None')
+        img = table_row.find('span', {'class': 'entry-thumb'}).get('data-img-url', 'None')
+        sub_title = table_row.find('div', {'class': 'td-excerpt'}).text
+        full_list.append((title, sub_title, img))
+    return full_list
