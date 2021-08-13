@@ -14,7 +14,7 @@ def create_album(request):
 
 
 def list_albums(request):
-    context = list_model(request, Album)
+    context = list_model(request, Album, search_by='title')
     return render(request, "album/list_albums.html", context)
 
 

@@ -14,7 +14,7 @@ def create_collaboration(request):
 
 
 def list_collaborations(request):
-    context = list_model(request, Collaboration)
+    context = list_model(request, Collaboration, search_by='song')
     return render(request, "collaboration/list_collaborations.html", context)
 
 

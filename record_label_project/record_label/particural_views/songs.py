@@ -14,7 +14,7 @@ def create_song(request):
 
 
 def list_songs(request):
-    context = list_model(request, Song)
+    context = list_model(request, Song, search_by='title')
     return render(request, "song/list_songs.html", context)
 
 

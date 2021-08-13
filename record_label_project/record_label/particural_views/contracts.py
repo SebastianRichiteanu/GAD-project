@@ -14,7 +14,7 @@ def create_contract(request):
 
 
 def list_contracts(request):
-    context = list_model(request, Contract)
+    context = list_model(request, Contract, search_by='artist')
     return render(request, "contract/list_contracts.html", context)
 
 

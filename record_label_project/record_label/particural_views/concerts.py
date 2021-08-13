@@ -14,7 +14,7 @@ def create_concert(request):
 
 
 def list_concerts(request):
-    context = list_model(request, Concert)
+    context = list_model(request, Concert, search_by='location')
     return render(request, "concert/list_concerts.html", context)
 
 
