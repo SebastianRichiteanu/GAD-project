@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from record_label.models import Location
 from record_label.forms import LocationForm
+from .list import list_model
 
 
 def create_location(request):
@@ -13,7 +14,7 @@ def create_location(request):
 
 
 def list_locations(request):
-    context = {"locations": Location.objects.all()}
+    context = list_model(request, Location)
     return render(request, "location/list_locations.html", context)
 
 

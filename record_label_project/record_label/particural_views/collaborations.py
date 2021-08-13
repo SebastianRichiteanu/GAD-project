@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from record_label.models import Collaboration
 from record_label.forms import CollaborationForm
+from .list import list_model
 
 
 def create_collaboration(request):
@@ -13,7 +14,7 @@ def create_collaboration(request):
 
 
 def list_collaborations(request):
-    context = {"collaborations": Collaboration.objects.all()}
+    context = list_model(request, Collaboration)
     return render(request, "collaboration/list_collaborations.html", context)
 
 

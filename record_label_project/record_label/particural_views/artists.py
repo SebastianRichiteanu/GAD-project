@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from django.core.paginator import Paginator
 from record_label.models import Artist
 from record_label.forms import ArtistForm
+from .list import list_model
 
 
 def create_artist(request):
@@ -14,15 +15,7 @@ def create_artist(request):
 
 
 def list_artists(request):
-    if 'q' in request.GET:
-        q=request.GET.get('q')
-        artists = Artist.objects.filter(name__icontains=q)
-    else:
-        artists = Artist.objects.all()
-    paginator = Paginator(artists, 3)
-    page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
-    context = {"page_obj": page_obj}
+    context = list_model(request, Artist)
     return render(request, "artist/list_artists.html", context)
 
 

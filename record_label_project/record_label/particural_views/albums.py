@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from record_label.models import Album
 from record_label.forms import AlbumForm
+from .list import list_model
 
 
 def create_album(request):
@@ -13,7 +14,7 @@ def create_album(request):
 
 
 def list_albums(request):
-    context = {"albums": Album.objects.all()}
+    context = list_model(request, Album)
     return render(request, "album/list_albums.html", context)
 
 

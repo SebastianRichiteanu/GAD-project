@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from record_label.models import Contract
 from record_label.forms import ContractForm
+from .list import list_model
 
 
 def create_contract(request):
@@ -13,7 +14,7 @@ def create_contract(request):
 
 
 def list_contracts(request):
-    context = {"contracts": Contract.objects.all()}
+    context = list_model(request, Contract)
     return render(request, "contract/list_contracts.html", context)
 
 

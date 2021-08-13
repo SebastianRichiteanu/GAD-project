@@ -3,20 +3,61 @@
     <title>Songs</title>
 {% endblock %}
 {% block content %}
-    <div class="div-form">
-        <p>
-            <a class="btn btn-primary" href="{% url 'create_song' %}">Add song</a>
-        </p>
-        {% if songs %}
-            <ul>
-                {% for song in songs %}
-                    <li>
-                        <a href="{% url 'view_song' song.id %}"> {{song.title}} - {{song.artist}} </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p> No song found.</p>
-        {% endif %}
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form>
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control form-control-lg" placeholder="Search" />
+                        <div class="input-group-append">
+                        <button class="btn btn-dark btn-lg" type="submit" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <p>
+                    <a class="btn btn-primary btn-add-list" href="{% url 'create_song' %}">Add song</a>
+                </p>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        {% if page_obj %}
+            {% for song in page_obj %}
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="/songs/{{song.id}}">{{song.title}}</a></h4>
+                        <p class="card-text">{{song.artist}}</p>
+                        <p class="card-text">{{song.publish_date}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card mb-4 shadow">
+                <div class="card-body">
+                    <h4 class="card-title">No songs found.</h4>
+                </div>
+            </div>
+        {% endif%}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <nav class="my-3 container">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                 <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+            {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+
 {% endblock %}

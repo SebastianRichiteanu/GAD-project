@@ -40,8 +40,10 @@ def news_webscraping():
     full_list = []
 
     for table_row in table_rows:
-        title = table_row.find('a', {'class': 'td-image-wrap'}).get('title', 'None')
+        tab = table_row.find('a', {'class': 'td-image-wrap'})
+        title = tab.get('title', 'None')
+        current_url = tab.get('href', 'None')
         img = table_row.find('span', {'class': 'entry-thumb'}).get('data-img-url', 'None')
         sub_title = table_row.find('div', {'class': 'td-excerpt'}).text
-        full_list.append((title, sub_title, img))
+        full_list.append((title, sub_title, img, current_url))
     return full_list

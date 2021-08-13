@@ -62,6 +62,7 @@ class Song(MyModel):
 
     @property
     def is_released(self):
+        print(self.publish_date < timezone.now().date())
         return self.publish_date < timezone.now().date()
 
 

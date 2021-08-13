@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from record_label.models import Concert
 from record_label.forms import ConcertForm
+from .list import list_model
 
 
 def create_concert(request):
@@ -13,7 +14,7 @@ def create_concert(request):
 
 
 def list_concerts(request):
-    context = {"concerts": Concert.objects.all()}
+    context = list_model(request, Concert)
     return render(request, "concert/list_concerts.html", context)
 
 
