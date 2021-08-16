@@ -25,7 +25,7 @@
             {% for contract in page_obj %}
                 <div class="card mb-4 shadow">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="/contracts/{{contract.id}}">{{contract.artist}}</a></h4>
+                        <h4 class="card-title"><a href="{% url 'view_contract' contract.id %}">{{contract.artist}}</a></h4>
                         <p class="card-text">{{contract.concert}}</p>
                     </div>
                 </div>

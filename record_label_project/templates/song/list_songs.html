@@ -25,7 +25,7 @@
             {% for song in page_obj %}
                 <div class="card mb-4 shadow">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="/songs/{{song.id}}">{{song.title}}</a></h4>
+                        <h4 class="card-title"><a href="{% url 'view_song' song.id %}">{{song.title}}</a></h4>
                         <p class="card-text">{{song.artist}}</p>
                         <p class="card-text">{{song.publish_date}}</p>
                     </div>

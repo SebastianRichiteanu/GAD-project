@@ -24,7 +24,7 @@
         {% for artist in page_obj %}
         <div class="card mb-4 shadow">
             <div class="card-body">
-                <h4 class="card-title"><a href="/artists/{{artist.id}}">{{artist.name}}</a></h4>
+                <h4 class="card-title"><a href="{% url 'view_artist' artist.id %}">{{artist.name}}</a></h4>
                 <p class="card-text">{{artist.last_name}} {{artist.first_name}}</p>
                 <p class="card-text">{{artist.mail}}</p>
             </div>

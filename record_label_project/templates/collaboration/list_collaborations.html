@@ -25,7 +25,7 @@
             {% for collaboration in page_obj %}
                 <div class="card mb-4 shadow">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="/collaborations/{{collaboration.id}}">{{collaboration.song}}</a></h4>
+                        <h4 class="card-title"><a href="{% url 'view_collaboration' collaboration.id %}">{{collaboration.song}}</a></h4>
                         <p class="card-text">{{collaboration.artist}}</p>
                     </div>
                 </div>

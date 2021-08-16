@@ -15,7 +15,7 @@ def create_artist(request):
 
 
 def list_artists(request):
-    context = list_model(request, Artist)
+    context = list_model(request, Artist, obj_per_page=3)
     return render(request, "artist/list_artists.html", context)
 
 

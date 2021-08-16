@@ -25,7 +25,7 @@
             {% for album in page_obj %}
                 <div class="card mb-4 shadow">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="/albums/{{album.id}}">{{album.title}}</a></h4>
+                        <h4 class="card-title"><a href="{% url 'view_album' album.id %}">{{album.title}}</a></h4>
                         <p class="card-text">{{album.publish_date}}</p>
                     </div>
                 </div>
