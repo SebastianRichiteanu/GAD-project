@@ -18,3 +18,8 @@
 .h1-title {
     padding:25px;
 }
+
+#map {
+    height: 30%;
+    position:static;
+}
