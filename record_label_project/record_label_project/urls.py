@@ -23,11 +23,10 @@ from record_label.particural_views.collaborations import create_collaboration, l
     view_collaboration, update_collaboration, delete_collaboration
 from record_label.particural_views.locations import create_location, list_locations, view_location, \
     update_location, delete_location
-from record_label.particural_views.concerts import create_concert, list_concerts, view_concert, update_concert, \
-    delete_concert
+from record_label.particural_views.concerts import (create_concert, list_concerts, view_concert, update_concert,
+                                                    delete_concert)
 from record_label.particural_views.contracts import create_contract, list_contracts, view_contract, update_contract, \
     delete_contract
-
 
 
 urlpatterns = [
