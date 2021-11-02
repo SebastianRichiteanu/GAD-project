@@ -1,6 +1,6 @@
 # Google Atelierul Digital project
 
-## Simple web site create with django framework for managing a record label.
+## Simple web site created with django framework for managing a record label.
 
 
 ## The web site has 2 web scrapers (<a href="https://user-images.githubusercontent.com/61471997/132495313-d2cde281-41d5-4995-acab-4675fbf54244.jpg">news</a> + <a href="https://user-images.githubusercontent.com/61471997/132495374-4cec7300-2ffe-4c50-8959-e8ec51485cf4.jpg">billboard</a>).
